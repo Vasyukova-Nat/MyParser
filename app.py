@@ -14,6 +14,7 @@ def getPage(page, keyword):  #page - Индекс страницы, начина
     req = requests.get(url, params=params) # Посылаем запрос к API
     data = req.json()
     req.close()
+    #print('GET PAGEEEEEEEEEEEEEEEEEEEEEEE 2')
     return data
 
 
@@ -48,6 +49,7 @@ def connect_to_db():
         host="localhost",
         port="5432"
     )
+    #print('CONNECT TO DBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB')
     return conn
 
 def create_table(conn):
@@ -88,19 +90,21 @@ def drop_table(conn):
 
 ##############################################################################################################################   
 
-def get_vacancies_5():  #вывод
+def get_vacancies_exp(key_experience_db):  #Фильтр БД на опыт
     conn = connect_to_db()
     cur = conn.cursor()
-    cur.execute("SELECT * FROM vacancies LIMIT 5")
+    if key_experience_db=='':
+        cur.execute("SELECT * FROM vacancies LIMIT 10")
+    else:
+        cur.execute(f"SELECT * FROM vacancies WHERE experience = '{key_experience_db}'")
     rows = cur.fetchall()
-    data_vacancies_5 = ''
+    db_experience = ''
     for row in rows:
-        data_vacancies_5 += str(row) + '\n' 
-    cur.close()  #СОМНИТЕЛЬНО, РАНЬШЕ НИГДЕ НЕ БЫЛО ОБЯЗАТЕЛЬНО
-    conn.close()
-    print(data_vacancies_5)
-    return(data_vacancies_5 )
-
+        db_experience += str(row) + '\n'
+    conn.close()  #Закрытие соединения с БД
+    cur.close()
+    #print('GET exppppppppppppppppppppp', db_experience, 'O')
+    return(db_experience)
 #########################################################################################
 
 from flask import Flask, render_template, request, jsonify
@@ -132,13 +136,16 @@ def index():
     result = 'Парсинг запущен'
     return render_template('index.html', result=result)
 
-    
-
-
 @app.route('/results')
 def results():
-    records = str(get_vacancies_5())
-    return render_template('results.html', records=records)
+    key_experience_db = request.args.get('key_experience_db', '')
+    # if not key_experience_db:
+    #     return render_template('results.html')
+
+    filterr = str(get_vacancies_exp(key_experience_db=key_experience_db))
+    print('FILT', key_experience_db, filterr)
+    return render_template('results.html', filterr=filterr)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

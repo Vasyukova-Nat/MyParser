@@ -8,8 +8,15 @@
 
 <body>
     <a href="/">Вернуться на главную</a>
-    <h1>{{ records }}</h1>
-    
+    <form action="/results">
+        <input type="text" name="key_experience_db" placeholder="Введите фильтр">
+        <button type="submit" style="background-color: #11ff00;">Поиск</button>
+    </form>
+
+    <p>Фильтр:</p>
+    <h2>{{ filterr }}</h2>
+
+
 </body>
 
 
