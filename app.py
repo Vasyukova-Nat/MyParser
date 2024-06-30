@@ -127,13 +127,18 @@ def index():
 
     data = getPage(page=0, keyword=keyword) # Получаем данные и сохраняем их в базу
     printVacancyInfo(data, conn)
-
     conn.close()  # Закрываем соединение с базой данных
 
-    result = str(get_vacancies_5())
+    result = 'Парсинг запущен'
     return render_template('index.html', result=result)
 
+    
 
+
+@app.route('/results')
+def results():
+    records = str(get_vacancies_5())
+    return render_template('results.html', records=records)
 
 if __name__ == '__main__':
     app.run(debug=True)

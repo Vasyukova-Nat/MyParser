@@ -3,15 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Keyword Search</title>
+    <title>Приложение на Flask</title>
 </head>
 
 <body>
+    <a href="/results">Перейти к результатам</a>
     <form action="/">
         <input type="text" name="keyword" placeholder="Введите ключевое слово">
-        <button type="submit">Поиск</button>
+        <button type="submit" style="background-color: #11ff00;">Поиск</button>
     </form>
     <h1>{{ result }}</h1>
+    
 </body>
 
 </html>
