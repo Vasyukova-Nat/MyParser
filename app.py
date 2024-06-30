@@ -90,20 +90,25 @@ def drop_table(conn):
 
 ##############################################################################################################################   
 
-def get_vacancies_exp(key_experience_db):  #Фильтр БД на опыт
+def get_vacancies_exp(key_area_db, key_experience_db):  #Фильтр БД на опыт
     conn = connect_to_db()
     cur = conn.cursor()
-    if key_experience_db=='':
-        cur.execute("SELECT * FROM vacancies LIMIT 10")
-    else:
+    if key_area_db=='' and key_experience_db=='':
+        cur.execute("SELECT * FROM vacancies") # FROM vacancies LIMIT 200
+    elif key_area_db:
+        if key_experience_db:
+            cur.execute(f"SELECT * FROM vacancies WHERE vacancy_area = '{key_area_db}' AND experience = '{key_experience_db}'")
+        else:
+            cur.execute(f"SELECT * FROM vacancies WHERE vacancy_area = '{key_area_db}'")
+    elif key_experience_db:
         cur.execute(f"SELECT * FROM vacancies WHERE experience = '{key_experience_db}'")
+
     rows = cur.fetchall()
     db_experience = ''
     for row in rows:
         db_experience += str(row) + '\n'
-    conn.close()  #Закрытие соединения с БД
+    conn.close() 
     cur.close()
-    #print('GET exppppppppppppppppppppp', db_experience, 'O')
     return(db_experience)
 #########################################################################################
 
@@ -114,36 +119,35 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # Предполагаем, что пользователь уже ввел значение keyword и оно сохранено в сессии
     keyword = request.args.get('keyword', '')
     if not keyword:
-        return render_template('index.html')  # Перенаправляем пользователя на страницу ввода, если keyword пустое
+        return render_template('index.html')  
+    conn = connect_to_db()  
+    drop_table(conn)  
+    create_table(conn)  
+
+    for page in range(0,3): 
     
-    # Вызываем функцию парсера с переданным значением keyword
-    #data = getPage(page=0, keyword=keyword)
-    # Преобразуем результат в JSON и возвращаем его пользователю
-    #return jsonify(data)
+        data = getPage(page=0, keyword=keyword) # Получаем данные и сохраняем их в базу
+        printVacancyInfo(data, conn)
+        
+        if (data['pages'] - page) <= 1:  # Проверка на последнюю страницу, если вакансий меньше 2000
+            break
 
-    #Мое
-    conn = connect_to_db()  #Добавила строчку позже и сама, может не работать
-    drop_table(conn)  #УДАЛЯЕМ ТАБЛИЦУ
-    create_table(conn)  # Создаем таблицу, если ее нет
+        time.sleep(0.25) # Необязательная задержка, чтобы не нагружать сервисы hh.
 
-    data = getPage(page=0, keyword=keyword) # Получаем данные и сохраняем их в базу
-    printVacancyInfo(data, conn)
+    
     conn.close()  # Закрываем соединение с базой данных
 
-    result = 'Парсинг запущен'
+    result = 'Парсинг завершён'
     return render_template('index.html', result=result)
 
 @app.route('/results')
 def results():
+    key_area_db = request.args.get('key_area_db', '')
     key_experience_db = request.args.get('key_experience_db', '')
-    # if not key_experience_db:
-    #     return render_template('results.html')
-
-    filterr = str(get_vacancies_exp(key_experience_db=key_experience_db))
-    print('FILT', key_experience_db, filterr)
+    
+    filterr = str(get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db))
     return render_template('results.html', filterr=filterr)
 
 

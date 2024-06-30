@@ -4,13 +4,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Результаты</title>
+    <style>
+        #key_experience_db {
+            color: rgb(0, 0, 0);
+        }
+        #key_experience_db option[disabled] {
+            color: rgb(154, 154, 154);
+        }
+    </style>
 </head>
 
 <body>
-    <a href="/">Вернуться на главную</a>
+    <!-- <a href="/">Вернуться на главную</a> -->
+    <div style="width: 100%; display: flex;">
+        <a href="/"
+            style="width: 50%; height: 30px; text-align: center; background-color: #3498db; color: white; cursor: pointer; border-radius: 10px; margin-bottom: 15px;">Page
+            1</a>
+        <a href="/results"
+            style="width: 50%; height: 30px; text-align: center; background-color: #71b6e5; color: white; cursor: pointer; border-radius: 10px;">Page
+            2</a>
+    </div>
+
     <form action="/results">
-        <input type="text" name="key_experience_db" placeholder="Введите фильтр">
-        <button type="submit" style="background-color: #11ff00;">Поиск</button>
+        <!-- <input type="text" name="key_experience_db" placeholder="Введите фильтр"> -->
+        <input type="text" name="key_area_db" placeholder="Введите город">
+
+        <select id="key_experience_db" name="key_experience_db">
+            <option disabled selected>Опыт работы</option>
+            <option value="Нет опыта">Нет опыта</option>
+            <option value="От 1 года до 3 лет">От 1 года до 3 лет</option>
+            <option value="От 3 до 6 лет">От 3 до 6 лет</option>
+        </select>
+
+        <button type="submit" style="background-color: #11ff00;">Применить фильтр</button>
     </form>
 
     <p>Фильтр:</p>
