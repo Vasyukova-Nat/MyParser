@@ -39,12 +39,18 @@ def printVacancyInfo(data, conn):
 
 
 def connect_to_db():
+    # conn = psycopg2.connect(
+    #     dbname="ParsingDB",
+    #     user="postgres",
+    #     password="postgres",
+    #     host="localhost",
+    #     port="5432"
+    # )
     conn = psycopg2.connect(
-        dbname="ParsingDB",
-        user="postgres",
-        password="postgres",
-        host="localhost",
-        port="5432"
+        host="db", 
+        database="ParsingDB", 
+        user="postgres", 
+        password="postgres"
     )
     return conn
 
