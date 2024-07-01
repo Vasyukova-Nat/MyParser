@@ -22,8 +22,8 @@ def printVacancyInfo(data, conn):
         vacancy_id = vacancy.get("id")
         vacancy_title = vacancy.get("name")
         vacancy_url = vacancy.get("alternate_url")
-        company_name = vacancy.get("employer", {}).get("name")  # company = vacancy['employer']['name']
-        salary = vacancy['salary']  #vacancy_salary = vacancy.get("salary")
+        company_name = vacancy.get("employer", {}).get("name") 
+        salary = vacancy['salary']  
         if salary:
             salary_range = f"{salary.get('from', 'Не указано')} - {salary.get('to', 'Не указано')}"  #можно + salary.get("currency")
         else:
