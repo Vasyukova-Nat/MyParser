@@ -25,6 +25,20 @@ td {
     text-align: left;
 }
 
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
+
+tr:hover {
+    background-color: #ffecf4;
+}
+
+
 a {
     color: blue;
     text-decoration: none;
