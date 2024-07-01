@@ -11,6 +11,33 @@
         #key_experience_db option[disabled] {
             color: rgb(154, 154, 154);
         }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+    
+        th {
+            background-color: #ffadd0;
+            padding: 8px;
+            text-align: left;
+            font-weight: bold;
+        }
+    
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+    
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+    
+        a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -40,7 +67,32 @@
     </form>
 
     <p>Фильтр:</p>
-    <h2>{{ filterr }}</h2>
+    <!-- <h2>{{ filterr }}</h2> -->
+
+    <table>
+        <tr>
+            <th>№</th>
+            <th>ID вакансии</th>
+            <th>Название</th>
+            <th>Компания</th>
+            <th>Ссылка</th>
+            <th>Зарплата</th>
+            <th>Город</th>
+            <th>Опыт</th>
+        </tr>
+        {% for job in filterr %}
+        <tr>
+            <td>{{ job[0] }}</td>
+            <td>{{ job[1] }}</td>
+            <td>{{ job[2] }}</td>
+            <td>{{ job[3] }}</td>
+            <td><a href="{{ job[4] }}" target="_blank">Подробнее</a></td>
+            <td>{{ job[5] }}</td>
+            <td>{{ job[6] }}</td>
+            <td>{{ job[7] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
 
 
 </body>

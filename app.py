@@ -14,8 +14,8 @@ def index():
     drop_table(conn)  
     create_table(conn)  
 
-    for page in range(0,3): 
-        data = getPage(page=0, keyword=keyword) # Получаем данные и сохраняем их в базу
+    for page in range(0,6): 
+        data = getPage(page=page, keyword=keyword) # Получаем данные и сохраняем их в базу
         printVacancyInfo(data, conn)
         if (data['pages'] - page) <= 1:  # Проверка на последнюю страницу, если вакансий меньше 2000
             break
@@ -31,7 +31,7 @@ def results():
     key_area_db = request.args.get('key_area_db', '')
     key_experience_db = request.args.get('key_experience_db', '')
     
-    filterr = str(get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db))
+    filterr = (get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db))
     return render_template('results.html', filterr=filterr)
 
 

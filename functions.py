@@ -35,7 +35,7 @@ def printVacancyInfo(data, conn):
             
         experience = vacancy.get('experience', {}).get('name', 'Не указано')
         
-        insert_data(conn, vacancy_id, vacancy_title, vacancy_url, company_name, salary_range, vacancy_area, experience)
+        insert_data(conn, vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience)
 
 
 def connect_to_db():
@@ -55,8 +55,8 @@ def create_table(conn):
         id SERIAL PRIMARY KEY,
         vacancy_id VARCHAR(255),
         vacancy_title VARCHAR(255),
-        vacancy_url VARCHAR(255),
         company_name VARCHAR(255),
+        vacancy_url VARCHAR(255),
         salary_range VARCHAR(255),
         vacancy_area VARCHAR(255),
         experience VARCHAR(255)
@@ -66,12 +66,12 @@ def create_table(conn):
     cur.close()
 
 
-def insert_data(conn, vacancy_id, vacancy_title, vacancy_url, company_name, salary_range, vacancy_area, experience):
+def insert_data(conn, vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience):
     cur = conn.cursor()
     cur.execute("""
-    INSERT INTO vacancies (vacancy_id, vacancy_title, vacancy_url, company_name, salary_range, vacancy_area, experience)
+    INSERT INTO vacancies (vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience)
     VALUES (%s, %s, %s, %s, %s, %s, %s)
-    """, (vacancy_id, vacancy_title, vacancy_url, company_name, salary_range, vacancy_area, experience))
+    """, (vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience))
     conn.commit()
     cur.close()
     
@@ -97,9 +97,9 @@ def get_vacancies_exp(key_area_db, key_experience_db):  #Фильтр БД на 
         cur.execute(f"SELECT * FROM vacancies WHERE experience = '{key_experience_db}'")
 
     rows = cur.fetchall()
-    db_experience = ''
+    db_experience = []
     for row in rows:
-        db_experience += str(row) + '\n'
+        db_experience += [row] 
     conn.close() 
     cur.close()
     return(db_experience)
