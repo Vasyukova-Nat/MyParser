@@ -1,0 +1,35 @@
+#key_experience_db {
+    color: rgb(0, 0, 0);
+}
+
+#key_experience_db option[disabled] {
+    color: rgb(154, 154, 154);
+}
+
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background-color: #ffadd0;
+    padding: 8px;
+    text-align: left;
+    font-weight: bold;
+}
+
+td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
