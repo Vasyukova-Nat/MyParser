@@ -5,25 +5,66 @@
 <head>
     <meta charset="UTF-8">
     <title>Приложение на Flask</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <!-- <a href="/results">Перейти к результатам</a> -->
-    <div style="width: 100%; display: flex;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Парсинг <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/results">Результаты</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- <div style="width: 100%; display: flex;">
         <a href="/"
             style="width: 50%; height: 30px; text-align: center; background-color: #3498db; color: white; cursor: pointer; border-radius: 10px; margin-bottom: 15px;">Page
             1</a>
         <a href="/results"
             style="width: 50%; height: 30px; text-align: center; background-color: #71b6e5; color: white; cursor: pointer; border-radius: 10px;">Page
             2</a>
+    </div> -->
+
+    <div style="min-height: 500px;">
+        <form action="/">
+            <input type="text" name="keyword" placeholder="Введите ключевое слово">
+            <button type="submit" style="background-color: #11ff00;">Поиск</button>
+        </form>
+        
+        <h1>{{ result }}</h1>
     </div>
 
-    <form action="/">
-        <input type="text" name="keyword" placeholder="Введите ключевое слово">
-        <button type="submit" style="background-color: #11ff00;">Поиск</button>
-    </form>
-    
-    <h1>{{ result }}</h1>
+    <footer class="footer bg-dark text-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>&copy; 2024 Vasyukoff</p>
+                </div>
+                <div class="col-md-6 text-right">
+                    <p>Contact Us: vasyukova.nat.it@gmail.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
 </body>
 
