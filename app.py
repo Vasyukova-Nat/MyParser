@@ -30,8 +30,9 @@ def index():
 def results():
     key_area_db = request.args.get('key_area_db', '')
     key_experience_db = request.args.get('key_experience_db', '')
+    key_employment_db = request.args.get('key_employment_db', '')
     
-    filterr = (get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db))
+    filterr = (get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db, key_employment_db=key_employment_db))
     return render_template('results.html', filterr=filterr)
 
 

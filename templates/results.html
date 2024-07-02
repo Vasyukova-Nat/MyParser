@@ -35,13 +35,21 @@
 
     <div style="min-height: 500px;">
         <form action="/results">
-            <input type="text" name="key_area_db" placeholder="Введите город">
+            <input type="text" class='key_area_db' name="key_area_db" placeholder="Введите город">
 
             <select id="key_experience_db" name="key_experience_db">
                 <option disabled selected>Опыт работы</option>
                 <option value="Нет опыта">Нет опыта</option>
                 <option value="От 1 года до 3 лет">От 1 года до 3 лет</option>
                 <option value="От 3 до 6 лет">От 3 до 6 лет</option>
+            </select>
+
+            <select id="key_employment_db" name="key_employment_db">
+                <option disabled selected>Занятость</option>
+                <option value="Полная занятость">Полная занятость</option>
+                <option value="Частичная занятость">Частичная занятость</option>
+                <option value="Стажировка">Стажировка</option>
+                <option value="Проектная работа">Проектная работа</option>
             </select>
 
             <button type="submit" class="bt-search">Применить фильтр</button>
@@ -59,6 +67,7 @@
                 <th>Зарплата</th>
                 <th>Город</th>
                 <th>Опыт</th>
+                <th>Занятость</th>
             </tr>
             {% for job in filterr %}
             <tr>
@@ -70,6 +79,7 @@
                 <td>{{ job[5] }}</td>
                 <td>{{ job[6] }}</td>
                 <td>{{ job[7] }}</td>
+                <td>{{ job[8] }}</td>
             </tr>
             {% endfor %}
         </table>

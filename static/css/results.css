@@ -1,9 +1,24 @@
+.key_area_db {
+    height: 30px;
+}
+
 #key_experience_db {
     color: rgb(0, 0, 0);
+    height: 30px;
 }
 
 #key_experience_db option[disabled] {
-    color: rgb(154, 154, 154);
+    color: #ffb7d1;
+    height: 30px;
+}
+
+#key_employment_db {
+    height: 30px;
+}
+
+#key_employment_db option[disabled] {
+    color: #ffb7d1;
+    height: 30px;
 }
 
 

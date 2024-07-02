@@ -34,8 +34,9 @@ def printVacancyInfo(data, conn):
             vacancy_area = f"{vacancy_area.get('name')}"  
             
         experience = vacancy.get('experience', {}).get('name', 'Не указано')
+        employment = vacancy.get('employment', {}).get('name', 'Не указано')
         
-        insert_data(conn, vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience)
+        insert_data(conn, vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience, employment)
 
 
 def connect_to_db():
@@ -65,19 +66,20 @@ def create_table(conn):
         vacancy_url VARCHAR(255),
         salary_range VARCHAR(255),
         vacancy_area VARCHAR(255),
-        experience VARCHAR(255)
+        experience VARCHAR(255),
+        employment VARCHAR(255)
     )
     """)
     conn.commit()
     cur.close()
 
 
-def insert_data(conn, vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience):
+def insert_data(conn, vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience, employment):
     cur = conn.cursor()
     cur.execute("""
-    INSERT INTO vacancies (vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience)
-    VALUES (%s, %s, %s, %s, %s, %s, %s)
-    """, (vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience))
+    INSERT INTO vacancies (vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience, employment)
+    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+    """, (vacancy_id, vacancy_title, company_name, vacancy_url, salary_range, vacancy_area, experience, employment))
     conn.commit()
     cur.close()
     
@@ -89,19 +91,18 @@ def drop_table(conn):
     cursor.close()
 
 ##############################################################################################################################   
-def get_vacancies_exp(key_area_db, key_experience_db):  #Фильтр БД на опыт
+def get_vacancies_exp(key_area_db, key_experience_db, key_employment_db):  #Фильтр БД на опыт
     conn = connect_to_db()
     cur = conn.cursor()
-    if key_area_db=='' and key_experience_db=='':
-        cur.execute("SELECT * FROM vacancies") # FROM vacancies LIMIT 200
-    elif key_area_db:
-        if key_experience_db:
-            cur.execute(f"SELECT * FROM vacancies WHERE vacancy_area = '{key_area_db}' AND experience = '{key_experience_db}'")
-        else:
-            cur.execute(f"SELECT * FROM vacancies WHERE vacancy_area = '{key_area_db}'")
-    elif key_experience_db:
-        cur.execute(f"SELECT * FROM vacancies WHERE experience = '{key_experience_db}'")
+    query = f"SELECT * FROM vacancies WHERE 1=1" # FROM vacancies LIMIT 200
+    if key_area_db:
+        query += f" AND vacancy_area = '{key_area_db}'"
+    if key_experience_db:
+        query += f" AND experience = '{key_experience_db}'"
+    if key_employment_db:
+        query += f" AND employment = '{key_employment_db}'"
 
+    cur.execute(query)
     rows = cur.fetchall()
     db_experience = []
     for row in rows:
