@@ -1,0 +1,21 @@
+.bg-custom {
+    background-color: #225F65;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+
+/* #F1C6C7 #E4BDBE #DFA3A4 #F2C8C9 #F2C9CA 
+Вторичный Цвет A: #85919F #7F8A97 #6D7F93 #8A97A5 #8B97A5 
+Вторичный Цвет B: #ECEFC4 #DFE2BC #D8DDA1 #EDF0C6 #EDF0C7 */
+
+/* Основной Цвет: #FFABAB #BF9090 #A63838 #FFC0C0 #FFD1D1 
+Вторичный Цвет A: #69979B #587274 #225F65 #9BC9CD #A8CACD 
+Вторичный Цвет B: #D7EFA0 #A6B387 #7B9B34 #E4F7BA #E9F7CA */
+
+
+.bt-search {
+    background-color: #68989A;
+}

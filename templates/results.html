@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
         <a class="navbar-brand" href="#">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,14 +32,6 @@
             </ul>
         </div>
     </nav>
-    <!-- <div style="width: 100%; display: flex;">
-        <a href="/"
-            style="width: 50%; height: 30px; text-align: center; background-color: #3498db; color: white; cursor: pointer; border-radius: 10px; margin-bottom: 15px;">Page
-            1</a>
-        <a href="/results"
-            style="width: 50%; height: 30px; text-align: center; background-color: #71b6e5; color: white; cursor: pointer; border-radius: 10px;">Page
-            2</a>
-    </div> -->
 
     <div style="min-height: 500px;">
         <form action="/results">
@@ -52,9 +44,10 @@
                 <option value="От 3 до 6 лет">От 3 до 6 лет</option>
             </select>
 
-            <button type="submit" style="background-color: #11ff00;">Применить фильтр</button>
+            <button type="submit" class="bt-search">Применить фильтр</button>
         </form>
 
+        <br/>
         <p>Фильтр:</p>
         <table>
             <tr>

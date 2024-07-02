@@ -7,13 +7,22 @@
 }
 
 
+.bg-custom {
+    background-color: #225F65;
+}
+
+nav {
+    margin-bottom: 20px;
+}
+
+
 table {
     width: 100%;
     border-collapse: collapse;
 }
 
 th {
-    background-color: #ffadd0;
+    background-color: #FFABAB;
     padding: 8px;
     text-align: left;
     font-weight: bold;
@@ -35,7 +44,7 @@ tr:nth-child(even) {
 }
 
 tr:hover {
-    background-color: #ffecf4;
+    background-color: #ffe0e0;
 }
 
 
@@ -46,4 +55,10 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+
+
+.bt-search {
+    background-color: #68989A;
 }
