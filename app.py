@@ -35,6 +35,10 @@ def results():
     filterr = (get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db, key_employment_db=key_employment_db))
     return render_template('results.html', filterr=filterr)
 
+@app.route('/contacts')
+def contacts():
+    return render_template('contacts.html')
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0')

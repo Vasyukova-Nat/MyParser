@@ -1,11 +1,10 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
-    <title>Приложение на Flask</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css')}}">
+    <title>Результаты</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/results.css')}}">
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -34,29 +33,13 @@
         </div>
     </nav>
 
-    <div style="min-height: 500px; margin-inline: 10px;">
-        <form action="/">
-            <input type="text" name="keyword" placeholder="Введите ключевое слово">
-            <button type="submit" class="bt-search">Поиск</button>
-        </form>
-        
-        <h2>{{ result }}</h2>
+    <div style="margin-inline: 10px;">
+        <p>Данное приложение создал один разработчик - студент МТУСИ Васюкова Наталья Павловна, группа БВТ2303. </p>
+
+        <p>По всем вопросам обращаться по почте - vasyukova.nat.it@gmail.com </p>
+
+        <p>Спасибо, что выбрали нас!</p>
     </div>
 
-    <footer class="footer bg-dark text-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-6">
-                    <p>&copy; 2024 Vasyukoff</p>
-                </div>
-                <div class="col-md-6 text-right">
-                    <p>Contact Us: vasyukova.nat.it@gmail.com</p>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
 </body>
-
 </html>
