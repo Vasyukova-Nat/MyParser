@@ -14,6 +14,14 @@ nav {
 /* https: //colorscheme.ru/#5C31Vayw0w0w0 */
 
 
+.keyword {
+    width: 200px;
+}
+
+.key_pages_number {
+    width: 200px;
+}
+
 .bt-search {
     background-color: #68989A;
     /* height: 30px; */

@@ -10,11 +10,12 @@ def index():
     keyword = request.args.get('keyword', '')
     if not keyword:
         return render_template('index.html')  
+    key_pages_number = int(request.args.get('key_pages_number', ''))
     conn = connect_to_db()  
     drop_table(conn)  
     create_table(conn)  
 
-    for page in range(0,6): 
+    for page in range(0, key_pages_number): 
         data = getPage(page=page, keyword=keyword) # Получаем данные и сохраняем их в базу
         printVacancyInfo(data, conn)
         if (data['pages'] - page) <= 1:  # Проверка на последнюю страницу, если вакансий меньше 2000
