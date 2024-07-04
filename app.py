@@ -32,8 +32,14 @@ def results():
     key_experience_db = request.args.get('key_experience_db', '')
     key_employment_db = request.args.get('key_employment_db', '')
     
-    filterr = (get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db, key_employment_db=key_employment_db))
-    return render_template('results.html', filterr=filterr)
+    filterr = get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db, key_employment_db=key_employment_db)[0]
+    
+    count = str(get_vacancies_exp(key_area_db=key_area_db, key_experience_db=key_experience_db, key_employment_db=key_employment_db)[1])
+    if key_area_db=='' and key_experience_db=='' and key_employment_db=='':
+        count = 'Всего найдено вакансий: ' + count 
+    else:
+        count = 'По Вашему запросу найдено вакансий: ' + count 
+    return render_template('results.html', filterr=filterr, count=count)
 
 @app.route('/contacts')
 def contacts():

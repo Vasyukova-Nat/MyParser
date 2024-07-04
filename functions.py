@@ -105,9 +105,11 @@ def get_vacancies_exp(key_area_db, key_experience_db, key_employment_db):  #Фи
     cur.execute(query)
     rows = cur.fetchall()
     db_experience = []
+    count = 0  #кол-во найденных результатов
     for row in rows:
         db_experience += [row] 
+        count += 1
     conn.close() 
     cur.close()
-    return(db_experience)
+    return(db_experience, count)
 #########################################################################################
