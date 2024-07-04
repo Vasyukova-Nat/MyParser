@@ -16,8 +16,8 @@ def index():
     create_table(conn)  
 
     for page in range(0, key_pages_number): 
-        data = getPage(page=page, keyword=keyword) # Получаем данные и сохраняем их в базу
-        printVacancyInfo(data, conn)
+        data = getPage(page=page, keyword=keyword) # Получаем данные 
+        printVacancyInfo(data, conn)  #Сохраняем их в базу
         if (data['pages'] - page) <= 1:  # Проверка на последнюю страницу, если вакансий меньше 2000
             break
         time.sleep(0.25) # Необязательная задержка, чтобы не нагружать сервисы hh.
