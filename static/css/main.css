@@ -7,8 +7,9 @@ nav {
 }
 
 
-/* #F1C6C7 #E4BDBE #DFA3A4 #F2C8C9 #F2C9CA 
-Вторичный Цвет A: #85919F #7F8A97 #6D7F93 #8A97A5 #8B97A5 
+
+/* #F1C6C7  #DFA3A4 #F2C8C9 #F2C9CA 
+Вторичный Цвет A: #85919F #7F8A97 #6D7F93 #6D7F93 #8B97A5 
 Вторичный Цвет B: #ECEFC4 #DFE2BC #D8DDA1 #EDF0C6 #EDF0C7 */
 
 /* https: //colorscheme.ru/#5C31Vayw0w0w0 */
@@ -27,7 +28,13 @@ nav {
     height: 30px;
 }
 
+#key_experience option:checked {
+    background-color: #1ca7ac;
+    color: white;
+}
+
 #key_experience option[disabled] {
+    background-color: white;
     color: #ffb7d1;
     height: 30px;
 }
@@ -37,7 +44,13 @@ nav {
     height: 30px;
 }
 
+#key_employment option:checked {
+    background-color: #1ca7ac;
+    color: white;
+}
+
 #key_employment option[disabled] {
+    background-color: white;
     color: #ffb7d1;
     height: 30px;
 }
