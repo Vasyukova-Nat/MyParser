@@ -10,7 +10,11 @@ def index():
     keyword = request.args.get('keyword', '')
     if not keyword:
         return render_template('index.html')  
-    key_pages_number = int(request.args.get('key_pages_number', ''))
+    key_pages_number = (request.args.get('key_pages_number', ''))
+    if key_pages_number == '':
+        key_pages_number = 1
+    key_pages_number = int(key_pages_number)
+
     key_area = request.args.get('key_area', '')
     if not key_area:
         key_area = None
