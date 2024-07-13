@@ -22,7 +22,43 @@ nav {
     width: 200px;
 }
 
+#key_experience {
+    color: rgb(0, 0, 0);
+    height: 30px;
+}
+
+#key_experience option[disabled] {
+    color: #ffb7d1;
+    height: 30px;
+}
+
+#key_employment {
+    color: rgb(0, 0, 0);
+    height: 30px;
+}
+
+#key_employment option[disabled] {
+    color: #ffb7d1;
+    height: 30px;
+}
+
+
 .bt-search {
     background-color: #68989A;
     /* height: 30px; */
+}
+
+.result-message {
+    animation: fadeOut 5s forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
 }

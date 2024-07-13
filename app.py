@@ -11,12 +11,22 @@ def index():
     if not keyword:
         return render_template('index.html')  
     key_pages_number = int(request.args.get('key_pages_number', ''))
+    key_area = request.args.get('key_area', '')
+    if not key_area:
+        key_area = None
+    key_experience = request.args.get('key_experience', '')
+    if not key_experience:
+        key_experience = None
+    key_employment = request.args.get('key_employment', '')
+    if not key_employment:
+        key_employment = None
+        
     conn = connect_to_db()  
     drop_table(conn)  
     create_table(conn)  
 
     for page in range(0, key_pages_number): 
-        data = getPage(page=page, keyword=keyword) # Получаем данные 
+        data = getPage(page=page, keyword=keyword, key_area=key_area, key_experience=key_experience, key_employment=key_employment) # Получаем данные 
         printVacancyInfo(data, conn)  #Сохраняем их в базу
         if (data['pages'] - page) <= 1:  # Проверка на последнюю страницу, если вакансий меньше 2000
             break
@@ -24,7 +34,7 @@ def index():
     
     conn.close()  # Закрываем соединение с базой данных
 
-    result = 'Парсинг завершён'
+    result = 'Парсинг завершён. Результаты отображены на второй странице.'
     return render_template('index.html', result=result)
 
 @app.route('/results')

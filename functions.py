@@ -2,11 +2,13 @@ import requests  #для отправки HTTP-запросов к API hh.ru.
 import psycopg2  #PostgreSQL
 import time
 
-def getPage(page, keyword):  #page - Индекс страницы, начинается с 0. Значение по умолчанию 0, т.е. первая страница
+def getPage(page, keyword, key_area, key_experience, key_employment):  #page - Индекс страницы, начинается с 0. Значение по умолчанию 0, т.е. первая страница
     url = 'https://api.hh.ru/vacancies'
     params = {
         "text": keyword, # Текст фильтра. В вакансии должно быть слово, например "Аналитик"
-        "area": None,  # ID города (1 - Москва, 2 - Санкт-Петербург) 
+        "area": key_area,  # ID города (1 - Москва, 2 - Санкт-Петербург) 
+        "experience": key_experience, 
+        "employment": key_employment,
         'page': page, # Индекс страницы поиска на HH
         "per_page": 10,  # Кол-во вакансий на 1 странице
     }  

@@ -34,14 +34,38 @@
         </div>
     </nav>
 
-    <div style="min-height: 500px; margin-inline: 10px;">
+    <div style="min-height: 480px; margin-inline: 10px;">
+        <h2>Найди работу своей мечты!</h2> <br/>
         <form action="/">
             <input type="text" name="keyword" class="keyword" placeholder="Введите ключевое слово">
             <input type="number" name="key_pages_number" class='key_pages_number' placeholder="Введите кол-во страниц">
+            
+            <input type="text" name="key_area" class="key_area" placeholder="Введите город (цифрой)">
+            <!-- Город нужно вводить цифрой, поэтому тут нужно сделать либо выпадающее меню, либо инетрпретатор который переводит текстовый город в цифру для парсера -->
+            <!-- <select id="key_area" name="key_area">
+                <option disabled selected>Город</option>
+                <option value=1>Москва</option>
+            </select> -->
+
+            <select id="key_experience" name="key_experience">
+                <option disabled selected>Опыт работы</option>
+                <option value="noExperience">Нет опыта</option>
+                <option value="between1And3">От 1 года до 3 лет</option>
+                <option value="between3And6">От 3 до 6 лет</option>
+            </select>
+
+            <select id="key_employment" name="key_employment">
+                <option disabled selected>Занятость</option>
+                <option value="full">Полная занятость</option>
+                <option value="part">Частичная занятость</option>
+                <option value="probation">Стажировка</option>
+                <option value="project">Проектная работа</option>
+            </select>
+
             <button type="submit" class="bt-search">Поиск</button>
-        </form>
+        </form> <br/>
         
-        <h2>{{ result }}</h2>
+        <h3 class="result-message">{{ result }}</h3>
     </div>
 
     <footer class="footer bg-dark text-light">
