@@ -115,3 +115,4 @@ def get_vacancies_exp(key_area_db, key_experience_db, key_employment_db):  #Фи
     cur.close()
     return(db_experience, count)
 #########################################################################################
+#drop_table(connect_to_db()) - искусственное обнуление таблицы
