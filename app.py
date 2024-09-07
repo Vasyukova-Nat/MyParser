@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    keyword = request.args.get('keyword', '')
+    keyword = request.args.get('keyword', '') #извлекаем keyword из GET-запроса. Если отсутствует, то значение по умолчанию - пустая строка.
     if not keyword:
         return render_template('index.html')  
     key_pages_number = (request.args.get('key_pages_number', ''))
